@@ -17,7 +17,7 @@ public class DialogFragmentEjemplo extends androidx.fragment.app.DialogFragment 
     boolean confirmacion;
     public void devolverConfirmacion(boolean confirmacion){
         MainActivity mainActivity = (MainActivity) getActivity();
-        MainActivity.leerPermisos(confirmacion);
+        MainActivity.leerConfirmacion(confirmacion);
     }
 
     @NonNull

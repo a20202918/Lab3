@@ -12,11 +12,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import pucp.telecom.moviles.lab3.Fragments.DialogFragmentEjemplo;
 import pucp.telecom.moviles.lab3.Fragments.DialogFragmentEjemplo2;
@@ -40,23 +49,25 @@ public class MainActivity extends AppCompatActivity {
         dialogFragmentEjemplo2.show(getSupportFragmentManager(), "guardar remoto");
     }
 
+    public static void leerConfirmacion(boolean confirmacion){
+        if (confirmacion){
+            leerPermisos();
+        }
+    }
+
     private int codigoPermisosWriteReadSD = 1;
 
-    public void leerPermisos(boolean confirmacion) {
+    public void leerPermisos() {
 
-        if (confirmacion) {
             int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (permission == PackageManager.PERMISSION_GRANTED) {
                 Log.d("infoApp", "Sí permisos");
-                guardarComoTexto();
+                guardarComoTexto(//agregar JSON);
             } else {
                 Log.d("infoApp", "No permisos");
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         codigoPermisosWriteReadSD);
             }
-        } else {
-
-        }
 
     }
 
@@ -78,4 +89,41 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void guardarRemoto(boolean confirmacion){
+
+        if(confirmacion){
+
+            String url2 = "http://ec2-34-234-229-191.compute-1.amazonaws.com:5000/saveData";
+
+            StringRequest stringRequest2 = new StringRequest(StringRequest.Method.POST, url2,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response2) {
+
+                            //Insertar JSON a subir
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("errorVol", error.getMessage());
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> cabecera = new HashMap<>();
+                    cabecera.put("X-Api-Token", "b7pKqop1qhOTOyixkj1ESmDbfsgi4Y");
+                    cabecera.put("Content-Type", "application/json");
+                    return cabecera;
+                }
+            };
+
+            RequestQueue requestQueue2 = Volley.newRequestQueue(MainActivity.this);
+            requestQueue2.add(stringRequest2);
+        }
+
+    }
+
 }

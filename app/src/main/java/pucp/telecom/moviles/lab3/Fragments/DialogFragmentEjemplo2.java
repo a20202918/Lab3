@@ -21,7 +21,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import pucp.telecom.moviles.lab3.MainActivity;
+
 public class DialogFragmentEjemplo2 extends androidx.fragment.app.DialogFragment {
+    boolean confirmacion;
+    public void devolverConfirmacion(boolean confirmacion){
+        MainActivity mainActivity = (MainActivity) getActivity();
+        MainActivity.guardarRemoto(confirmacion);
+    }
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-/*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1) {
@@ -94,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(this,"No se tiene permisos de posición",Toast.LENGTH_SHORT).show();
             }
         }
-    }*/
+    }
+    
 
     public void guardarLocalFragmento(View view){
         DialogFragmentEjemplo dialogFragmentEjemplo = new DialogFragmentEjemplo();

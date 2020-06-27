@@ -8,7 +8,9 @@ import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     public void startRecording(View view) {
+        Toast IniciarGrabacion = Toast.makeText(getApplicationContext(), "Se ha iniciado la grabación", Toast.LENGTH_SHORT);
+        IniciarGrabacion.setGravity(Gravity.CENTER, ,);
+        IniciarGrabacion.show();
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         int Amplitud = recorder.getMaxAmplitude();
         double dB = 10*Math.log10(Amplitud/3000);
-        
+
 
         try {
             recorder.prepare();

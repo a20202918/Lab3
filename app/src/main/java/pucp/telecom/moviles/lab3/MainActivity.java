@@ -10,6 +10,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -24,11 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        obtenerUbicacion();
+
 
     }
 
-
+    public void guardarRemoto (View view){
+        obtenerUbicacion();
+    }
     public void obtenerUbicacion() {
         int permiso =
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);

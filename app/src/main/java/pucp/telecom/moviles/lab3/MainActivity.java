@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
-<<<<<<< HEAD
+
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
-=======
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;

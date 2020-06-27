@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         recorder.setOutputFile(fileName);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        int Amplitud = recorder.getMaxAmplitude();
+        double dB = 10*Math.log10(Amplitud/3000);
+        
 
         try {
             recorder.prepare();
